@@ -39,6 +39,7 @@ cd unbound-1.7.3/
 make
 sudo make install
 cd ..
+cd ..
 rm -rf tmp
 
 sudo add-apt-repository ppa:bitcoin/bitcoin
@@ -55,9 +56,13 @@ then
   cd unny-core
   git checkout master
   cd depends
-  make
+  make -j4
+  cd ..
+  cd contrib/seeds
+  python generate-seeds.py . > ../../src/chainparamsseeds.h
+  cd ..
   cd ..
   ./autogen.sh
-  ./configure --enable-debug --enable-tests
-  make
+  ./configure --prefix=`pwd`/depends/`uname -m`-pc-linux-gnu
+  make -j4
 fi
