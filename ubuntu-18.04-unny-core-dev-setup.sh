@@ -63,6 +63,6 @@ then
   cd ..
   cd ..
   ./autogen.sh
-  ./configure --prefix=`pwd`/depends/`uname -m`-pc-linux-gnu
+  ./configure --enable-cxx --disable-shared --with-pic --prefix=`pwd`/depends/`uname -m`-pc-linux-gnu CXXFLAGS="-fPIC" CPPFLAGS="-fPIC"
   make -j4
 fi
